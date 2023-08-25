@@ -16,6 +16,20 @@ class Home extends StatelessWidget {
           title: Text('Calculadora de IMC'),
           titleTextStyle: TextStyle(color: Colors.white),
         ),
+        body: Column(
+          children: [
+            Image.asset('lib/assets/body.jpg'),
+            Text('Item 1'),
+            TextButton(
+                child: Text("teste"),
+                onPressed: () {
+                  print("pressionado");
+                })
+            // Text('Item 1'),
+            // Text('Item 2'),
+            // Text('Novo Item'), // Novo widget que você quer adicionar
+          ],
+        ),
       ),
     );
   }
