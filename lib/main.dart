@@ -19,7 +19,10 @@ class Home extends StatelessWidget {
         body: Column(
           children: [
             Image.asset('lib/assets/body.jpg'),
-            Text('Item 1'),
+            Text('\nSeu Peso:', style: TextStyle(fontSize: 30),),
+            TextField(),
+  
+
             TextButton(
                 child: Text("teste"),
                 onPressed: () {
@@ -34,3 +37,18 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      width: 250,
+      child: TextField(
+        obscureText: true,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Password',
+        ),
+      ),
+    );
+  }
+
