@@ -13,42 +13,58 @@ class Home extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.green,
           centerTitle: true,
-          title: Text('Calculadora de IMC'),
-          titleTextStyle: TextStyle(color: Colors.white),
+          title: const Text('Calculadora de IMC'),
+          titleTextStyle: const TextStyle(color: Colors.white),
         ),
         body: Column(
           children: [
             Image.asset('lib/assets/body.jpg'),
-            Text('\nSeu Peso:', style: TextStyle(fontSize: 30),),
-            TextField(),
-  
-
-            TextButton(
-                child: Text("teste"),
+            const Text(
+              '\nSeu Peso:\n',
+              style: TextStyle(fontSize: 20),
+            ),
+            const SizedBox(
+              width: 200,
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Peso',
+                ),
+              ),
+            ),
+            const Text(
+              '\nSua Altura:\n',
+              style: TextStyle(fontSize: 20),
+            ),
+            const SizedBox(
+              width: 200,
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Altura',
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.green,
+                ),
                 onPressed: () {
                   print("pressionado");
-                })
-            // Text('Item 1'),
-            // Text('Item 2'),
-            // Text('Novo Item'), // Novo widget que você quer adicionar
+                },
+                child: const Text(
+                  "Calcular",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 }
-
-  @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
-      width: 250,
-      child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: 'Password',
-        ),
-      ),
-    );
-  }
-
