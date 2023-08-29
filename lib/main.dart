@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'Pessoa.dart';
 
 void main() {
   runApp(Home());
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  TextEditingController nomeController = TextEditingController();
+  TextEditingController pesoController = TextEditingController();
+  TextEditingController alturaController = TextEditingController();
+  TextEditingController estadoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,14 +31,29 @@ class Home extends StatelessWidget {
           children: [
             Image.asset('lib/assets/body.jpg'),
             const Text(
+              '\nSeu Nome:\n',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(
+              width: 200,
+              child: TextField(
+                controller: nomeController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Nome',
+                ),
+              ),
+            ),
+            const Text(
               '\nSeu Peso:\n',
               style: TextStyle(fontSize: 20),
             ),
-            const SizedBox(
+            SizedBox(
               width: 200,
               child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
+                controller: pesoController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Peso',
                 ),
@@ -37,11 +63,12 @@ class Home extends StatelessWidget {
               '\nSua Altura:\n',
               style: TextStyle(fontSize: 20),
             ),
-            const SizedBox(
+            SizedBox(
               width: 200,
               child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
+                controller: alturaController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Altura',
                 ),
@@ -54,7 +81,20 @@ class Home extends StatelessWidget {
                   backgroundColor: Colors.green,
                 ),
                 onPressed: () {
-                  print("pressionado");
+                  double altura = double.parse(alturaController.text);
+                  double peso = double.parse(pesoController.text);
+
+                  Pessoa pessoa = Pessoa(
+                    nomeController.text,
+                    peso,
+                    altura,
+                  );
+
+                  double imc = pessoa.calimc();
+                  String estadoNutricional = pessoa.estadoNutricional();
+
+                  print("IMC: $imc");
+                  print("Estado Nutricional: $estadoNutricional");
                 },
                 child: const Text(
                   "Calcular",
@@ -68,3 +108,5 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+//Jackson Nascimento - Birth
