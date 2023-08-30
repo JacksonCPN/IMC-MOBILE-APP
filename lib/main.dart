@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'Pessoa.dart';
 
 void main() {
-  runApp(Home());
+  runApp(const Home());
 }
 
 class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -14,7 +16,9 @@ class _HomeState extends State<Home> {
   TextEditingController nomeController = TextEditingController();
   TextEditingController pesoController = TextEditingController();
   TextEditingController alturaController = TextEditingController();
-  TextEditingController estadoController = TextEditingController();
+
+  String IMC = '';
+  String Estado = '';
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +34,7 @@ class _HomeState extends State<Home> {
         body: Column(
           children: [
             Image.asset('lib/assets/body.jpg'),
-            const Text(
-              '\nSeu Nome:\n',
-              style: TextStyle(fontSize: 20),
-            ),
+            const SizedBox(height: 30),
             SizedBox(
               width: 200,
               child: TextField(
@@ -44,9 +45,8 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            const Text(
-              '\nSeu Peso:\n',
-              style: TextStyle(fontSize: 20),
+            const SizedBox(
+              height: 20,
             ),
             SizedBox(
               width: 200,
@@ -59,9 +59,8 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            const Text(
-              '\nSua Altura:\n',
-              style: TextStyle(fontSize: 20),
+            const SizedBox(
+              height: 20,
             ),
             SizedBox(
               width: 200,
@@ -93,14 +92,29 @@ class _HomeState extends State<Home> {
                   double imc = pessoa.calimc();
                   String estadoNutricional = pessoa.estadoNutricional();
 
-                  print("IMC: $imc");
-                  print("Estado Nutricional: $estadoNutricional");
+                  setState(() {
+                    IMC = "IMC: ${imc.toStringAsFixed(2)}";
+                  });
+                  setState(() {
+                    Estado =
+                        //   "IMC: ${imc.toStringAsFixed(2)}\nEstado Nutricional: $estadoNutricional";
+                        "\nEstado Nutricional: $estadoNutricional";
+                  });
                 },
                 child: const Text(
-                  "Calcular",
+                  'Calcular',
                   style: TextStyle(color: Colors.black),
                 ),
               ),
+            ),
+            const SizedBox(height: 30),
+            Text(
+              IMC,
+              style: const TextStyle(color: Colors.orange, fontSize: 20),
+            ),
+            Text(
+              Estado,
+              style: const TextStyle(color: Colors.orange, fontSize: 20),
             )
           ],
         ),
@@ -108,5 +122,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-//Jackson Nascimento - Birth

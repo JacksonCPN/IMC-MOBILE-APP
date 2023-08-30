@@ -3,7 +3,11 @@ class Pessoa {
   double _peso;
   double _altura;
 
-  Pessoa(this._nome, this._peso, this._altura);
+  Pessoa(
+    this._nome,
+    this._peso,
+    this._altura,
+  );
 
   String get nome => _nome;
   set nome(String novoNome) => _nome = novoNome;
@@ -13,6 +17,9 @@ class Pessoa {
 
   double get altura => _altura;
   set altura(double novaAltura) => _altura = novaAltura;
+
+  // String get imc => _imc;
+  // set imc(String novoImc) => _imc = novoImc;
 
 //calculo do IMC
   double calimc() {
